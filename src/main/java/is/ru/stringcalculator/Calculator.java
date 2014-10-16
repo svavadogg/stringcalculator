@@ -6,7 +6,10 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains(",")){
+		else if(text.startsWith("//")){
+			return changeDelimiter(text);
+		}
+		else if(text.contains(",") || text.contains("/n") ){
 			return sum(splitNumbers(text));
 		}
 		else
@@ -18,7 +21,8 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
-	    return numbers.split(",");
+	    String cleaned = numbers.replaceAll("/n",",");
+	    return cleaned.split(",");
 	}
       
     private static int sum(String[] numbers){
@@ -28,6 +32,17 @@ public class Calculator {
 		}
 		return total;
     }
+    private static int changeDelimiter(String text){
+    	int newLineIndex = text.indexOf("/n");
+    	String delimiter = text.substring(2, newLineIndex);
+    	String newText = text.substring(newLineIndex + 2);
+    	String cleaned = newText.replaceAll(delimiter,",");
+
+    	String[] numbersArray = cleaned.split(",");
+    	return sum(numbersArray);
+    }
+
+
 
 
 

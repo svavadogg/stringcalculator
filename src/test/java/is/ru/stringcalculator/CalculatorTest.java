@@ -30,7 +30,15 @@ public class CalculatorTest {
     }
     @Test
     public void testUnknownNumberOf(){
-    	assertEquals(20, Calculator.add("1,1,1,1,2,2,2,2,2,2,2,2"))
+    	assertEquals(20, Calculator.add("1,1,1,1,2,2,2,2,2,2,2,2"));
+    }
+    @Test
+    public void testNewLine(){
+    	assertEquals(3, Calculator.add("1/n2"));
+    }
+    @Test
+    public void testDelimiter(){
+    	assertEquals(6, Calculator.add("//;/n1;2;3"));
     }
 
 }
