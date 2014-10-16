@@ -1,4 +1,5 @@
 package is.ru.stringcalculator;
+import java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -36,7 +37,7 @@ public class Calculator {
     	int newLineIndex = text.indexOf("/n");
     	String delimiter = text.substring(2, newLineIndex);
     	String newText = text.substring(newLineIndex + 2);
-    	String cleaned = newText.replaceAll(delimiter,",");
+    	String cleaned = newText.replaceAll(Pattern.quote(delimiter),",");
 
     	String[] numbersArray = cleaned.split(",");
     	return sum(numbersArray);
