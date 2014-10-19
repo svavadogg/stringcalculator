@@ -40,7 +40,7 @@ public class Calculator {
 		    total += toInt(number);
 		}
 		if(num.length() > 0){
-			//throw new IllegalArgumentException("Negatives not allowed: "+num.substring(0, num.length()-2));
+			throw new IllegalArgumentException("Negatives not allowed: "+num.substring(0, num.length()-2));
 		}
 		return total;
     }
