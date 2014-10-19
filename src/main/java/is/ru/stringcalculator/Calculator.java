@@ -47,12 +47,33 @@ public class Calculator {
     private static int changeDelimiter(String text){
     	int newLineIndex = text.indexOf("/n");
     	String delimiter = text.substring(2, newLineIndex);
-    	if(delimiter.charAt(0) == '['){
-    		delimiter = delimiter.substring(1, delimiter.length() - 1);
-    	}
-
     	String newText = text.substring(newLineIndex + 2);
-    	String cleaned = newText.replaceAll(Pattern.quote(delimiter),",");
+
+    	String cleaned;
+    	if(delimiter.charAt(0) == '['){
+    		String delimiters = "";
+    		String tmp = "";
+    		for(int i = 0; i < delimiter.length(); i++){
+    			if(delimiter.charAt(i) == ']'){
+    				delimiters += tmp+",";
+    			}
+    			else if(delimiter.charAt(i) == '['){
+    				tmp = "";
+    			}
+    			else{
+    				tmp += delimiter.charAt(i);
+    			}
+
+    		}
+    		delimiters = delimiters.substring(0, delimiters.length() - 1);
+    		String[] delArr = delimiters.split(",");
+    		cleaned = newText;
+    		for(int i = 0; i < delArr.length; i++){
+    			cleaned = cleaned.replaceAll(Pattern.quote(delArr[i]),",");
+    		}
+    	}else{
+	    	cleaned = newText.replaceAll(Pattern.quote(delimiter),",");
+	    }
 
     	String[] numbersArray = cleaned.split(",");
     	return sum(numbersArray);
