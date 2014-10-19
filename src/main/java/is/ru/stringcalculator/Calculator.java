@@ -28,8 +28,15 @@ public class Calculator {
       
     private static int sum(String[] numbers){
  	    int total = 0;
+ 	    String num = "";
         for(String number : numbers){
+        	if(toInt(number) < 0){
+        		num += number+", ";
+        	}
 		    total += toInt(number);
+		}
+		if(num.length() > 0){
+			throw new IllegalArgumentException("Negatives not allowed: "+num.substring(0, num.length()-2));
 		}
 		return total;
     }
@@ -42,8 +49,6 @@ public class Calculator {
     	String[] numbersArray = cleaned.split(",");
     	return sum(numbersArray);
     }
-
-
 
 
 

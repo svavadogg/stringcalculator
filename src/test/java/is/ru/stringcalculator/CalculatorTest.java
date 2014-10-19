@@ -40,5 +40,9 @@ public class CalculatorTest {
     public void testDelimiter(){
     	assertEquals(6, Calculator.add("//;/n1;2;3"));
     }
+    @Test
+    public void testNegativeNumbers(){
+    	assertEquals(4, Calculator.add("3,5,-3,3,-4"));
+    }
 
 }
