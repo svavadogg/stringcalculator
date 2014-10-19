@@ -48,5 +48,9 @@ public class CalculatorTest {
     public void testNumbersHigherThan1000(){
     	assertEquals(3, Calculator.add("1000,1,2,1043"));
     }
+    @Test
+    public void testDelimiterLength(){
+    	assertEquals(6, Calculator.add("//[***]/n1***2***3"));
+    }
 
 }

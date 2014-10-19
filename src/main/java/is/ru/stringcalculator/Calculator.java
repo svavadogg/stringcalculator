@@ -40,13 +40,17 @@ public class Calculator {
 		    total += toInt(number);
 		}
 		if(num.length() > 0){
-			throw new IllegalArgumentException("Negatives not allowed: "+num.substring(0, num.length()-2));
+			//throw new IllegalArgumentException("Negatives not allowed: "+num.substring(0, num.length()-2));
 		}
 		return total;
     }
     private static int changeDelimiter(String text){
     	int newLineIndex = text.indexOf("/n");
     	String delimiter = text.substring(2, newLineIndex);
+    	if(delimiter.charAt(0) == '['){
+    		delimiter = delimiter.substring(1, delimiter.length() - 1);
+    	}
+
     	String newText = text.substring(newLineIndex + 2);
     	String cleaned = newText.replaceAll(Pattern.quote(delimiter),",");
 
